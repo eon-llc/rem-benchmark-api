@@ -136,7 +136,6 @@ func AllBenchmarks(epoch string) (benchmarks, error) {
 	replacer := strings.NewReplacer("-", " ", "s", "")
 	interval := replacer.Replace(epoch)
 
-	parts := strings.Split(epoch, "-")
 	timestamp := ""
 	where := ""
 
