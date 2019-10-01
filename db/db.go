@@ -140,16 +140,7 @@ func AllBenchmarks(epoch string) (benchmarks, error) {
 	timestamp := ""
 	where := ""
 
-	if strings.Contains(epoch, "hour") {
-		if parts[0] == "1" {
-			response.Interval = "1 minute"
-			timestamp = "date_trunc( 'minute', created_on )"
-		} else {
-			response.Interval = "10 minutes"
-			timestamp = "to_timestamp(floor((extract('epoch' from created_on) / 600 )) * 600)"
-		}
-		where = fmt.Sprintf("WHERE created_on >= (CURRENT_DATE - INTERVAL '%s')", interval)
-	} else if strings.Contains(epoch, "day") {
+	if strings.Contains(epoch, "day") {
 		response.Interval = "1 hour"
 		timestamp = "date_trunc( 'hour', created_on )"
 		where = fmt.Sprintf("WHERE created_on >= (CURRENT_DATE - INTERVAL '%s')", interval)

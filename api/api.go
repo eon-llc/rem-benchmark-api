@@ -10,9 +10,6 @@ import (
 )
 
 var allowed_epochs = []string{
-	"1-hour",
-	"4-hour",
-	"12-hour",
 	"1-day",
 	"3-days",
 	"7-days",
