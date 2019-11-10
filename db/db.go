@@ -65,7 +65,7 @@ func init() {
 }
 
 func dbConfig() map[string]string {
-	err := godotenv.Load()
+	err := godotenv.Load("/root/rem-benchmark-api/.env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
