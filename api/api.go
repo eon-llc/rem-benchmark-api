@@ -10,13 +10,18 @@ import (
 )
 
 var allowed_epochs = []string{
+	"3-hours",
+	"6-hours",
+	"12-hours",
 	"1-day",
 	"3-days",
 	"7-days",
 	"14-days",
-	"30-days",
-	"60-days",
-	"90-days",
+	"1-month",
+	"2-months",
+	"3-months",
+	"6-months",
+	"1-year",
 	"all",
 }
 
