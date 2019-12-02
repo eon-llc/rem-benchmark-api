@@ -140,11 +140,11 @@ func AllBenchmarks(epoch string) (benchmarks, error) {
 	where := ""
 
 	if strings.Contains(epoch, "hour") {
-		response.Interval = "varied"
-		timestamp = "created_on"
+		response.Interval = "30 minutes"
+		timestamp = "to_timestamp(floor(EXTRACT(epoch FROM created_on) / EXTRACT(epoch FROM interval '30 min')) * EXTRACT(epoch FROM interval '30 min'))"
 		where = fmt.Sprintf("WHERE created_on >= (CURRENT_DATE - INTERVAL '%s')", interval)
 	} else if strings.Contains(epoch, "day") {
-		response.Interval = "varied"
+		response.Interval = "1 hour"
 		timestamp = "date_trunc( 'hour', created_on )"
 		where = fmt.Sprintf("WHERE created_on >= (CURRENT_DATE - INTERVAL '%s')", interval)
 	} else if strings.Contains(epoch, "month") {
@@ -152,8 +152,8 @@ func AllBenchmarks(epoch string) (benchmarks, error) {
 		timestamp = "date_trunc( 'day', created_on )"
 		where = fmt.Sprintf("WHERE created_on >= (CURRENT_DATE - INTERVAL '%s')", interval)
 	} else if epoch == "all" {
-		response.Interval = "1 day"
-		timestamp = "date_trunc( 'day', created_on )"
+		response.Interval = "1 week"
+		timestamp = "date_trunc( 'week', created_on )"
 		where = ""
 	}
 
