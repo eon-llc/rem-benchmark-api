@@ -13,7 +13,7 @@ func main() {
 
 	router.HandleFunc("/epochs", api.AllEpochs).Methods("GET")
 	router.HandleFunc("/producers", api.AllProducers).Methods("GET")
-	router.HandleFunc("/benchmarks/{epoch}", api.AllBenchmarks).Methods("GET")
+	router.HandleFunc("/benchmarks", api.AllBenchmarks).Methods("GET").Queries("epoch", "{epoch}")
 
 	srv := &http.Server{
 		Handler:      router,

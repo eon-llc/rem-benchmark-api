@@ -3,7 +3,6 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/gorilla/mux"
 	"net/http"
 
 	"../db"
@@ -57,8 +56,7 @@ func AllProducers(w http.ResponseWriter, r *http.Request) {
 
 func AllBenchmarks(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	vars := mux.Vars(r)
-	epoch := vars["epoch"]
+	epoch := r.FormValue("epoch")
 
 	if stringInSlice(epoch, allowed_epochs) {
 		benchmarks, err := db.AllBenchmarks(epoch)
